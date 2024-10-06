@@ -9,5 +9,5 @@ Currently, two official plugins are available:
 
 To Get Started 
 clone the repository and then 
-npm i 
+npm i  
 npm run dev
