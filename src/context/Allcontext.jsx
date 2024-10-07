@@ -200,7 +200,11 @@ function Allcontext(props) {
     const promises = Object.keys(sprites).map(async (key) => {
       const id = sprites[key].id;
       const midarray = midArrays[id] || [];
-      const repeatCount = Repeat[id] || 1;
+      if (midarray.includes(5)) {
+        const repeatCount = Repeat[id];
+      } else {
+        const repeatCount = 1;
+      }
 
       for (let repeat = 0; repeat < repeatCount; repeat++) {
         for (const item of midarray) {
