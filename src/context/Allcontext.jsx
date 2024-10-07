@@ -285,46 +285,58 @@ function Allcontext(props) {
     await Promise.all(promises);
   };
 
- const swapSpritesIfClose = (updatedSprites) => {
-   const spritesToCheck = [...updatedSprites]; // Create a copy of the sprites to avoid mutation
+const swapSpritesIfClose = (updatedSprites) => {
+  const spritesToCheck = [...updatedSprites];
 
-   for (let i = 0; i < spritesToCheck.length; i++) {
-     for (let j = i + 1; j < spritesToCheck.length; j++) {
-       const spriteA = spritesToCheck[i];
-       const spriteB = spritesToCheck[j];
+  for (let i = 0; i < spritesToCheck.length; i++) {
+    for (let j = i + 1; j < spritesToCheck.length; j++) {
+      const spriteA = spritesToCheck[i];
+      const spriteB = spritesToCheck[j];
 
-       const distance = Math.sqrt(
-         Math.pow(spriteA.position.x - spriteB.position.x, 2) +
-           Math.pow(spriteA.position.y - spriteB.position.y, 2)
-       );
+      const distance = Math.sqrt(
+        Math.pow(spriteA.position.x - spriteB.position.x, 2) +
+          Math.pow(spriteA.position.y - spriteB.position.y, 2)
+      );
 
-       if (distance <= 80) {
-         console.log(
-           `Swapping sprites ${spriteA.id} and ${spriteB.id} due to proximity.`
-         );
+      if (distance <= 80) {
+        console.log(
+          `Swapping sprites ${spriteA.id} and ${spriteB.id} due to proximity.`
+        );
 
-         // Generate random positions within the bounds (0, 0) to (400, 400)
-         const newX1 = Math.random() * 400; // Random x-coordinate for spriteA
-         const newY1 = Math.random() * 400; // Random y-coordinate for spriteA
-         const newX2 = Math.random() * 400; // Random x-coordinate for spriteB
-         const newY2 = Math.random() * 400; // Random y-coordinate for spriteB
+        // Generate new positions
+        const newX1 = Math.random() * 400;
+        const newY1 = Math.random() * 400;
+        const newX2 = Math.random() * 400;
+        const newY2 = Math.random() * 400;
 
-         // Create copies of spriteA and spriteB
-         const newSpriteA = { ...spriteA, position: { x: newX1, y: newY1 } };
-         const newSpriteB = { ...spriteB, position: { x: newX2, y: newY2 } };
+        // Create updated copies with new positions and swapped IDs
+        const updatedSpriteA = {
+          ...spriteA,
+          id: spriteB.id,
+          position: { x: newX1, y: newY1 },
+        };
+        const updatedSpriteB = {
+          ...spriteB,
+          id: spriteA.id,
+          position: { x: newX2, y: newY2 },
+        };
 
-         // Update the state with the new positions
-         const updatedSprites = spritesToCheck.map((sprite) => {
-           if (sprite.id === spriteA.id) return newSpriteA; // Return updated spriteA
-           if (sprite.id === spriteB.id) return newSpriteB; // Return updated spriteB
-           return sprite; // Return the rest unchanged
-         });
+        // Update the state with the new sprites
+        const newSprites = spritesToCheck.map((sprite) => {
+          if (sprite.id === updatedSpriteA.id) return updatedSpriteA;
+          if (sprite.id === updatedSpriteB.id) return updatedSpriteB;
+          return sprite;
+        });
 
-         setSprites(updatedSprites); // Update the state
-       }
-     }
-   }
- };
+        setSprites(newSprites);
+      }
+    }
+  }
+};
+
+
+
+
 
 
 
