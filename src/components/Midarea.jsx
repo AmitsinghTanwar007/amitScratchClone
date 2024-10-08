@@ -109,12 +109,10 @@ function Midarea({ id }) {
 
   const handleRun = async () => {
     const midarray = midArrays[id] || [];
-    if(midarray.includes(5)){
-      const repeatCount=Repeat[id];
-    }
-    else{
-      const repeatCount = 1;
-    }
+    let repeatCount = 1;
+    if (midarray.includes(5)) {
+      repeatCount = Repeat[id];
+    } 
 
     for (let repeat = 0; repeat < repeatCount; repeat++) {
       for (let item of midarray) {
