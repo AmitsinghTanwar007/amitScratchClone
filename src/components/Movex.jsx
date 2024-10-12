@@ -4,7 +4,7 @@ import Getcontext from "../context/Getcontext";
 
 function Movex({ id }) {
   const { stepInXValues, setStepInX } = useContext(Getcontext);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (stepInXValues[id] !== undefined||NaN) {

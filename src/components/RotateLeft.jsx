@@ -4,7 +4,7 @@ import Getcontext from "../context/Getcontext";
 
 function RotateLeft({ id }) {
   const { setRotationLeft, rotationInLeft } = useContext(Getcontext);
-  const [step, setstep] = useState(2);
+  const [step, setstep] = useState(0);
 
   useEffect(() => {
     if (rotationInLeft[id] !== undefined) {

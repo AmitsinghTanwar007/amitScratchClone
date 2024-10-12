@@ -4,7 +4,7 @@ import Getcontext from "../context/Getcontext";
 
 function RotateRight({ id }) {
   const { setRotationRight, rotationInRight } = useContext(Getcontext);
-  const [step, setstep] = useState(2);
+  const [step, setstep] = useState(0);
 
   useEffect(() => {
     if (rotationInRight[id] !== undefined) {

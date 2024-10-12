@@ -4,7 +4,7 @@ import Getcontext from "../context/Getcontext";
 
 function Movey({ id }) {
   const { stepInYValues, setStepInY } = useContext(Getcontext);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (stepInYValues[id] !== undefined) {

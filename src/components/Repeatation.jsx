@@ -4,7 +4,7 @@ import Getcontext from "../context/Getcontext";
 
 function Repeatation({ id }) {
   const { Repeat, setRepeatValue } = useContext(Getcontext);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (Repeat[id] !== undefined) {

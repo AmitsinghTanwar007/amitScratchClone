@@ -4,8 +4,8 @@ import { useDrag } from "react-dnd"; // Import useDrag from react-dnd
 
 function Goto({ id }) {
   const { gotoValues, setGoto, getGotoValues } = useContext(Getcontext);
-  const [x, setX] = useState(2); // Default value for X
-  const [y, setY] = useState(2); // Default value for Y
+  const [x, setX] = useState(0); // Default value for X
+  const [y, setY] = useState(0); // Default value for Y
 
   // Load existing X and Y values from context when the component mounts or when ID changes
   useEffect(() => {

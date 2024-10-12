@@ -26,6 +26,8 @@ const SpriteImage = React.memo(({ sprite, onDragStart, onDragEnd }) => {
 function PreviewArea() {
   const {
     spriteCount,
+    collision,
+    setCollision,
     setSpriteCount,
     curSprite,
     setCurSprite,
@@ -35,6 +37,10 @@ function PreviewArea() {
     handleRunForAllSprites,
   } = useContext(Getcontext);
 
+
+  const toggleSwitch = () => {
+    setCollision(!collision);
+  };
   const [activeImg, setActiveImg] = useState(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const previewRef = useRef(null);
@@ -184,7 +190,7 @@ function PreviewArea() {
       <select
         value={selectedImage}
         onChange={(e) => setSelectedImage(e.target.value)}
-        className="mb-2 p-2 border border-gray-800 rounded-md"
+        className="mb-2 p-2 border mr-2 border-gray-800 rounded-md"
       >
         {imageOptions.map((img, index) => (
           <option key={index} value={img}>
@@ -192,6 +198,24 @@ function PreviewArea() {
           </option>
         ))}
       </select>
+
+      <div className="flex items-center space-x-2">
+        <span>Hero Feature</span>
+        <span className="text-xs">OFF</span>
+        <span
+          className={`w-14 h-7 flex items-center bg-gray-300 rounded-full p-1  cursor-pointer ${
+            collision ? "bg-blue-500" : "bg-gray-300"
+          }`}
+          onClick={toggleSwitch}
+        >
+          <div
+            className={`bg-white w-5 h-5 rounded-full shadow-md transform ${
+              collision ? "translate-x-7" : "translate-x-0"
+            } transition-all duration-200`}
+          ></div>
+        </span>
+        <span className="text-xs">ON</span>
+      </div>
 
       <div className="relative">
         {sprites.map((sprite) => (

@@ -18,6 +18,8 @@ function Allcontext(props) {
   // Object to store Goto x and y values for each sprite ID
   const [gotoValues, setGotoValues] = useState({}); // <-- Goto state
 
+  const [collision, setCollision] = useState(false);
+
   // Object to store rotation values associated with each sprite ID
   const [rotationInRight, setRotationInRight] = useState({});
   const [rotationInLeft, setRotationInLeft] = useState({}); // New object for left rotation
@@ -227,7 +229,9 @@ function Allcontext(props) {
                           }
                         : sprite
                     );
-                    swapSpritesIfClose(newSprites);
+                    if (collision) {
+                      swapSpritesIfClose(sprites);
+                    }
                     return newSprites;
                   }
                   case 2: {
@@ -336,8 +340,10 @@ function Allcontext(props) {
 
 
   useEffect(() => {
-  swapSpritesIfClose(sprites);
-}, [sprites]);
+    if(collision){
+      swapSpritesIfClose(sprites);
+    }
+}, [sprites,collision]);
 
 
   return (
@@ -376,6 +382,8 @@ function Allcontext(props) {
         moveComponent,
         handleRunForAllSprites,
         swapSpritesIfClose,
+        collision,
+        setCollision,
       }}
     >
       {props.children}
